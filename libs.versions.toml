@@ -1,0 +1,21 @@
+#### 定义项目所有依赖库
+## 统一定义版本
+[versions]
+projectjdk  = "21"
+springboot = "3.5.3"
+lombok_version  = "1.18.38"
+hutool_version = "5.8.38"
+spring_dependency = "1.1.7"
+
+## 统一定义依赖
+[libraries]
+spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springboot" }
+lombok = { module = "org.projectlombok:lombok", name="lombok", version.ref = "lombok_version" }
+hutool = { module = "cn.hutool:hutool-all", name="hutool-all", version.ref = "hutool_version" }
+
+## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组
+[bundles]
+## 统一定义插件
+[plugins]
+springboot = { id = "org.springframework.boot", version.ref = "springboot" }
+springdependency = { id = "io.spring.dependency-management", version.ref = "spring_dependency" }
