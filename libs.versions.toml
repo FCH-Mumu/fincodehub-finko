@@ -3,15 +3,22 @@
 [versions]
 projectjdk  = "21"
 springboot = "3.5.3"
+spring-cloud = "2025.0.0"
+spring-cloud-alibaba = "2023.0.3.3"
 lombok_version  = "1.18.38"
-hutool_version = "5.8.38"
 spring_dependency = "1.1.7"
+jackson_version = "2.16.0"
+
 
 ## 统一定义依赖
 [libraries]
-spring-boot-bom = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springboot" }
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springboot" }
+spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+spring-cloud-alibaba-dependencies = { module = "com.alibaba.cloud:spring-cloud-alibaba-dependencies", version.ref = "spring-cloud-alibaba" }
 lombok = { module = "org.projectlombok:lombok", name="lombok", version.ref = "lombok_version" }
-hutool = { module = "cn.hutool:hutool-all", name="hutool-all", version.ref = "hutool_version" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", name="jackson-databind", version.ref = "jackson_version" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", name="jackson-core", version.ref = "jackson_version" }
+
 
 ## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组
 [bundles]

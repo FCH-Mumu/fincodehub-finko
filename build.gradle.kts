@@ -8,9 +8,22 @@ val projectGroup: String = rootProject.extra["project_group"] as String
 val projectVersion: String = rootProject.extra["project_version"] as String
 val projectJdk: String = rootProject.extra["project_jdk"] as String
 
+
+
 // 加载根路径自定义配置属性
-val envProps = Properties()
-envProps.load(FileInputStream("${project.projectDir.absolutePath}${File.separator}env.properties"))
+
+// 加载环境属性文件
+val envProps = Properties().apply {
+    val envFile = file("env.properties")
+    if (envFile.exists()) {
+        FileInputStream(envFile).use { fis ->
+            load(fis)
+        }
+    } else {
+        logger.warn("env.properties 文件未找到，跳过加载环境配置")
+    }
+}
+
 plugins {
     java
     alias(projectLibs.plugins.springboot)
@@ -62,7 +75,13 @@ subprojects {
 
 
     dependencies {
-        implementation(platform(pLibs.spring.boot.bom))
+        implementation(platform(pLibs.spring.boot.dependencies))
+        implementation(platform(pLibs.spring.cloud.dependencies))
+        implementation(platform(pLibs.spring.cloud.alibaba.dependencies))
+
+        // 示例：公共工具类可以引入 lombok、utils等
+        compileOnly(pLibs.lombok)
+        annotationProcessor(pLibs.lombok)
     }
     // 如果项目中存在多个版本的同一库，可以通过排除旧版本或冲突的版本。
     configurations.all {

@@ -24,3 +24,8 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+include("finko-auth")
+include("finko-framework")
+include("finko-framework:finko-commom")
+include("finko-framework:finko-spring-boot-starter-biz-operationlog")
