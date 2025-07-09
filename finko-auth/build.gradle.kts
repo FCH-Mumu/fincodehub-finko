@@ -6,4 +6,7 @@ dependencies {
     implementation(project(":finko-framework:finko-commom"))
     // 引入operationlog
     implementation(project(":finko-framework:finko-spring-boot-starter-biz-operationlog"))
+    // 引入mybatis依赖
+    implementation(projectLibs.mybatis.plus.boot.starter)
+    implementation(projectLibs.mysql.connector.java)
 }

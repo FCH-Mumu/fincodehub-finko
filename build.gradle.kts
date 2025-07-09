@@ -82,6 +82,8 @@ subprojects {
         // 示例：公共工具类可以引入 lombok、utils等
         compileOnly(pLibs.lombok)
         annotationProcessor(pLibs.lombok)
+        testImplementation(pLibs.lombok)
+        testAnnotationProcessor(pLibs.lombok)
     }
     // 如果项目中存在多个版本的同一库，可以通过排除旧版本或冲突的版本。
     configurations.all {

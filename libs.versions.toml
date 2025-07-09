@@ -8,7 +8,8 @@ spring-cloud-alibaba = "2023.0.3.3"
 lombok_version  = "1.18.38"
 spring_dependency = "1.1.7"
 jackson_version = "2.16.0"
-
+mysql_connector_java_version = "8.0.33"
+mybatis-plus-version = "3.5.12"
 
 ## 统一定义依赖
 [libraries]
@@ -18,6 +19,9 @@ spring-cloud-alibaba-dependencies = { module = "com.alibaba.cloud:spring-cloud-a
 lombok = { module = "org.projectlombok:lombok", name="lombok", version.ref = "lombok_version" }
 jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", name="jackson-databind", version.ref = "jackson_version" }
 jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", name="jackson-core", version.ref = "jackson_version" }
+mysql-connector-java = { module = "mysql:mysql-connector-java", name="mysql-connector-java", version.ref = "mysql_connector_java_version" }
+mybatis-plus-boot-starter = { module = "com.baomidou:mybatis-plus-spring-boot3-starter", name="mybatis-plus-boot-starter", version.ref = "mybatis-plus-version" }
+mybatis-plus-generator = { module = "com.baomidou:mybatis-plus-generator", name="mybatis-plus-generator", version.ref = "mybatis-plus-version" }
 
 
 ## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组
