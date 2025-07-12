@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @description <TODO description class purpose>
  */
 @SpringBootApplication
-@MapperScan("com.fincodehub.finko.auth.domain.mapper")
+@MapperScan("com.fincodehub.finko.auth.mapper")
 public class FinkoApplication {
     public static void main(String[] args) {
         SpringApplication.run(FinkoApplication.class, args);

@@ -84,6 +84,12 @@ subprojects {
         annotationProcessor(pLibs.lombok)
         testImplementation(pLibs.lombok)
         testAnnotationProcessor(pLibs.lombok)
+
+        implementation(pLibs.commons.lang3)
+        implementation(pLibs.commons.io)
+        implementation(pLibs.fastjson)
+
+
     }
     // 如果项目中存在多个版本的同一库，可以通过排除旧版本或冲突的版本。
     configurations.all {

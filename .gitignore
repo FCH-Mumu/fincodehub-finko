@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### logs文件夹以及子文件夹和文件 ###
+logs/
