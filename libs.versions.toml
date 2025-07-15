@@ -1,0 +1,67 @@
+#### 定义项目所有依赖库
+## 统一定义版本
+[versions]
+projectjdk  = "21"
+springboot = "3.5.3"
+spring-cloud = "2025.0.0"
+spring-cloud-alibaba = "2023.0.3.3"
+lombok_version  = "1.18.38"
+spring_dependency = "1.1.7"
+jackson_version = "2.16.0"
+mysql_connector_java_version = "8.0.33"
+mybatis-plus-version = "3.5.12"
+druid-version = "1.2.25"
+commons-lang3-version = "3.18.0"
+commons-io-version = "2.19.0"
+springdoc-version = "2.8.9"
+swagger-annotations-version = "2.2.34"
+freemarker-version = "2.3.32"
+velocity-engine-core-version = "2.4.1"
+fastjson-version = "2.0.57"
+sa-token-version = "1.44.0"
+guava-version = "33.4.8-jre"
+hutool-version = "5.8.39"
+commons-pool2-version = "2.12.1"
+aliyun-dysmsapi-version = "4.1.2"
+jasypt-version = "3.0.5"
+
+## 统一定义依赖
+[libraries]
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springboot" }
+spring-cloud-dependencies = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud" }
+spring-cloud-alibaba-dependencies = { module = "com.alibaba.cloud:spring-cloud-alibaba-dependencies", version.ref = "spring-cloud-alibaba" }
+lombok = { module = "org.projectlombok:lombok", name="lombok", version.ref = "lombok_version" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", name="jackson-databind", version.ref = "jackson_version" }
+jackson-core = { module = "com.fasterxml.jackson.core:jackson-core", name="jackson-core", version.ref = "jackson_version" }
+mysql-connector-java = { module = "mysql:mysql-connector-java", name="mysql-connector-java", version.ref = "mysql_connector_java_version" }
+mybatis-plus-boot-starter = { module = "com.baomidou:mybatis-plus-spring-boot3-starter", name="mybatis-plus-boot-starter", version.ref = "mybatis-plus-version" }
+mybatis-plus-generator = { module = "com.baomidou:mybatis-plus-generator", name="mybatis-plus-generator", version.ref = "mybatis-plus-version" }
+druid-spring-boot-starter = { module = "com.alibaba:druid-spring-boot-3-starter", name="druid-spring-boot-starter", version.ref = "druid-version" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", name="commons-lang3", version.ref = "commons-lang3-version" }
+commons-io = { module = "commons-io:commons-io", name="commons-io", version.ref = "commons-io-version" }
+springdoc = { module = "org.springdoc:springdoc-openapi-starter-webmvc-ui", name="springdoc", version.ref = "springdoc-version" }
+swagger-annotations = { module = "io.swagger.core.v3:swagger-annotations", name="swagger-annotations", version.ref = "swagger-annotations-version" }
+#freemarker = { module = "org.freemarker:freemarker", name="freemarker", version.ref = "freemarker-version" }
+freemarker = { module = "org.springframework.boot:spring-boot-starter-freemarker", name="spring-boot-starter-freemarke", version.ref = "springboot" }
+velocity-engine-core = { module = "org.apache.velocity:velocity-engine-core", name="velocity-engine-core", version.ref = "velocity-engine-core-version" }
+fastjson = { module = "com.alibaba:fastjson", name="fastjson", version.ref = "fastjson-version" }
+jakarta-validation-api = { module = "jakarta.validation:jakarta.validation-api", name="jakarta.validation-api" }
+hibernate-validator = { module = "org.hibernate.validator:hibernate-validator", name="hibernate-validator" }
+sa-token = { module = "cn.dev33:sa-token-spring-boot3-starter", name="sa-token-spring-boot3-starter", version.ref = "sa-token-version" }
+spring-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", name="spring-boot-starter-data-redis" }
+commons-pool2 = { module = "org.apache.commons:commons-pool2", name="commons-pool2", version.ref = "commons-pool2-version" }
+guava = { module = "com.google.guava:guava", name="guava", version.ref = "guava-version" }
+hutool-all = { module = "cn.hutool:hutool-all", name="hutool-all", version.ref = "hutool-version" }
+aliyun-dysmsapi = { module = "com.aliyun:dysmsapi20170525", name="dysmsapi20170525", version.ref = "aliyun-dysmsapi-version" }
+sa-token-redis-jackson = { module = "cn.dev33:sa-token-redis-jackson", name="sa-token-redis-jackson", version.ref = "sa-token-version" }
+jasypt = { module = "com.github.ulisesbocchio:jasypt-spring-boot-starter", name="jasypt-spring-boot-starter", version.ref = "jasypt-version" }
+
+
+
+
+## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组
+[bundles]
+## 统一定义插件
+[plugins]
+springboot = { id = "org.springframework.boot", version.ref = "springboot" }
+springdependency = { id = "io.spring.dependency-management", version.ref = "spring_dependency" }
