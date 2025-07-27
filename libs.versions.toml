@@ -26,6 +26,7 @@ aliyun-dysmsapi-version = "4.1.2"
 jasypt-version = "3.0.5"
 nacos-config-version = "2023.0.3.3"
 spring-bootstrap-version = "4.3.0"
+nacos-discovery-version = "2023.0.3.3"
 
 ## 统一定义依赖
 [libraries]
@@ -59,6 +60,7 @@ sa-token-redis-jackson = { module = "cn.dev33:sa-token-redis-jackson", name="sa-
 jasypt = { module = "com.github.ulisesbocchio:jasypt-spring-boot-starter", name="jasypt-spring-boot-starter", version.ref = "jasypt-version" }
 #nacos-config = { module = "com.alibaba.cloud:spring-alibaba-nacos-config", name="spring-alibaba-nacos-config", version.ref = "nacos-config-version" }
 nacos-cloud-config = { module = "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config", name="spring-cloud-starter-alibaba-nacos-config", version.ref = "nacos-config-version" }
+nacos-discovery = { module = "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery", name="spring-cloud-starter-alibaba-nacos-discovery", version.ref = "nacos-discovery-version" }
 spring-bootstrap-starter = { module = "org.springframework.cloud:spring-cloud-starter-bootstrap", name="spring-cloud-starter-bootstrap", version.ref = "spring-bootstrap-version" }
 
 

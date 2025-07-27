@@ -20,6 +20,7 @@ dependencies {
     //nacos
 //    implementation(projectLibs.nacos.config)
     implementation(projectLibs.nacos.cloud.config)
+    implementation(projectLibs.nacos.discovery)
 
 
     // 引入sa-token
