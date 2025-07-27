@@ -98,8 +98,20 @@ public class MybatisPlusGenerator {
                           // 自定义表名转Entity
                           // 针对t_user表返回UserDo
                           if ("sys_user".equalsIgnoreCase(tableInfo.getName())) {
-                            return "UserDo";
+                            return "UserDO";
                           }
+                            if ("sys_role".equalsIgnoreCase(tableInfo.getName())) {
+                                return "RoleDO";
+                            }
+                            if ("sys_permission".equalsIgnoreCase(tableInfo.getName())) {
+                                return "PermissionDO";
+                            }
+                            if ("sys_user_role_rel".equalsIgnoreCase(tableInfo.getName())) {
+                                return "UserRoleDO";
+                            }
+                            if ("sys_role_permission_rel".equalsIgnoreCase(tableInfo.getName())) {
+                                return "RolePermissionDO";
+                            }
                           // 其他表使用默认命名规则(下划线转驼峰)
                           return NamingStrategy.capitalFirst(
                               NamingStrategy.underlineToCamel(tableInfo.getName()));

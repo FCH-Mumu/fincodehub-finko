@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: finko-auth
+  config:
+    import:
+      - nacos:finko-auth?group=DEFAULT_GROUP
+      - optional:nacos:finko-auth-dev?refreshEnabled=true&group=DEFAULT_GROUP
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.43.30:9001
+        password: nacos
+        username: nacos
+        namespace: finko # 命名空间
+        group: DEFAULT_GROUP # 配置分组
+        refresh-enabled: true # 配置是否动态刷新
+        prefix: ${spring.application.name} # 配置Data ID前缀
+        file-extension: yaml # 配置文件格式

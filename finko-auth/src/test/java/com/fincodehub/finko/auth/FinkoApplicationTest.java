@@ -1,7 +1,11 @@
 package com.fincodehub.finko.auth;
 
+import jakarta.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 
 /**
  * @title FinkoApplicationTest
@@ -13,6 +17,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @Slf4j
 public class FinkoApplicationTest {
+
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
+    @Test
+    public void test(){
+
+       redisTemplate.opsForValue().setIfAbsent("tttt", "1", 1, TimeUnit.DAYS);
+       
+       
+       
+
+    }
+    
     //
     // @Resource
     // private UserDOMapper userDOMapper;

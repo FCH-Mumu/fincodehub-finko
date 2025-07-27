@@ -1,16 +1,16 @@
 package com.fincodehub.finko.auth.service;
 
-import com.fincodehub.finko.auth.domain.UserDo;
+import com.fincodehub.finko.auth.domain.RoleDO;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 用户表 服务类
+ * 角色表 服务类
  * </p>
  *
  * @author FCH丨木木
- * @since 2025-07-12
+ * @since 2025-07-27
  */
-public interface IUserDoService extends IService<UserDo> {
+public interface IRoleDOService extends IService<RoleDO> {
 
 }

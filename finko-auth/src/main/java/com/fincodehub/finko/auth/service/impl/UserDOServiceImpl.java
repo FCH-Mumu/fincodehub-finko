@@ -1,0 +1,184 @@
+package com.fincodehub.finko.auth.service.impl;
+
+import cn.dev33.satoken.stp.SaTokenInfo;
+import cn.dev33.satoken.stp.StpUtil;
+import com.alibaba.nacos.shaded.com.google.common.base.Preconditions;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.fincodehub.finko.auth.constant.RedisKeyConstants;
+import com.fincodehub.finko.auth.constant.RoleConstants;
+import com.fincodehub.finko.auth.domain.UserDO;
+import com.fincodehub.finko.auth.domain.UserRoleDO;
+import com.fincodehub.finko.auth.enums.LoginTypeEnum;
+import com.fincodehub.finko.auth.enums.ResponseCodeEnum;
+import com.fincodehub.finko.auth.mapper.UserDOMapper;
+import com.fincodehub.finko.auth.mapper.UserRoleDOMapper;
+import com.fincodehub.finko.auth.model.vo.user.UserLoginReqVO;
+import com.fincodehub.finko.auth.service.IUserDOService;
+import com.finko.framework.common.eumns.DeletedEnum;
+import com.finko.framework.common.eumns.StatusEnum;
+import com.finko.framework.common.exception.BizException;
+import com.finko.framework.common.response.ResponseObject;
+import com.finko.framework.common.util.JsonUtils;
+import com.google.common.collect.Lists;
+import jakarta.annotation.Resource;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
+
+/**
+ * <p>
+ * 用户表 服务实现类
+ * </p>
+ *
+ * @author FCH丨木木
+ * @since 2025-07-13
+ */@Service
+@Slf4j
+public class UserDOServiceImpl extends ServiceImpl<UserDOMapper, UserDO> implements IUserDOService {
+    @Resource
+    private UserDOMapper userDOMapper;
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
+
+    @Resource
+    private UserRoleDOMapper userRoleDOMapper;
+
+    @Resource private TransactionTemplate transactionTemplate;
+    /**
+     * 登录与注册
+     *
+     * @param userLoginReqVO
+     * @return
+     */
+    @Override
+    public ResponseObject<String> loginAndRegister(UserLoginReqVO userLoginReqVO) {
+        String phone = userLoginReqVO.getPhone();
+        Integer type = userLoginReqVO.getType();
+
+        LoginTypeEnum loginTypeEnum = LoginTypeEnum.valueOf(type);
+
+        Long userId = null;
+
+        // 判断登录类型
+        switch (loginTypeEnum) {
+            // 验证码登录
+            case VERIFICATION_CODE:
+                String verificationCode = userLoginReqVO.getCode();
+
+                // 校验入参验证码是否为空
+                // if (StringUtils.isBlank(verificationCode)) {
+                //     return ResponseObject.fail(ResponseCodeEnum.PARAM_NOT_VALID.getErrorCode(), "验证码不能为空");
+                // }
+                // 校验入参验证码是否为空 Guava
+                Preconditions.checkArgument(StringUtils.isNoneBlank(verificationCode), "验证码不能为空");
+
+                // 构建验证码 Redis Key
+                String key = RedisKeyConstants.buildVerificationCodeKey(phone);
+                // 查询存储在 Redis 中该用户的登录验证码
+                String sentCode = (String) redisTemplate.opsForValue().get(key);
+
+                System.out.println("key======"+key);
+                System.out.println("sentCode======"+sentCode);
+                System.out.println("verificationCode======"+verificationCode);
+                // 判断用户提交的验证码，与 Redis 中的验证码是否一致
+                if (!StringUtils.equals(verificationCode, sentCode)) {
+                    throw new BizException(ResponseCodeEnum.VERIFICATION_CODE_ERROR);
+                }
+
+
+                // 通过手机号查询记录
+                UserDO userDO = userDOMapper.selectByPhone(phone);
+
+                log.info("==> 用户是否注册, phone: {}, userDO: {}", phone, JsonUtils.toJsonString(userDO));
+
+                // 判断是否注册
+                if (Objects.isNull(userDO)) {
+                    // 若此用户还没有注册，系统自动注册该用户
+                    userId = registerUser(phone);
+
+                } else {
+                    // 已注册，则获取其用户 ID
+                    userId = userDO.getId();
+                }
+                break;
+            // 密码登录
+            case PASSWORD:
+                // todo
+
+                break;
+            default:
+                break;
+        }
+
+        // SaToken 登录用户，并返回 token 令牌
+        // SaToken 登录用户, 入参为用户 ID
+        StpUtil.login(userId);
+
+        // 获取 Token 令牌
+        SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
+
+        // 返回 Token 令牌
+        return ResponseObject.success(tokenInfo.tokenValue);
+    }
+    /**
+     * 系统自动注册用户
+     * @param phone
+     * @return
+     */
+    @Transactional(rollbackFor = Exception.class)
+    public Long registerUser(String phone) {
+        return transactionTemplate.execute(
+                status -> {
+                    try {
+                        // 获取全局自增的finko ID
+                        Long finkoId =
+                                redisTemplate.opsForValue().increment(RedisKeyConstants.FINKO_ID_GENERATOR_KEY);
+
+                        UserDO userDO =
+                                UserDO.builder()
+                                        .phone(phone)
+                                        .finkoId(String.valueOf(finkoId)) // 自动生成小红书号 ID                    .nickname("Finko" + finkoId) // 自动生成昵称,
+                                        .status(StatusEnum.ENABLE.getValue()) // 状态为启用
+                                        .createTime(LocalDateTime.now())
+                                        .updateTime(LocalDateTime.now())
+                                        .isDeleted(DeletedEnum.NO.getValue()) // 逻辑删除
+                                        .build();
+
+                        // 添加入库
+                        userDOMapper.insert(userDO);
+                        // int i = 10/0;
+                        // 获取刚刚添加入库的用户 ID
+                        Long userId = userDO.getId();
+                        // 给该用户分配一个默认角色
+                        UserRoleDO userRoleDO =
+                                UserRoleDO.builder()
+                                        .userId(userId)
+                                        .roleId(RoleConstants.COMMON_USER_ROLE_ID)
+                                        .createTime(LocalDateTime.now())
+                                        .updateTime(LocalDateTime.now())
+                                        .isDeleted(DeletedEnum.NO.getValue())
+                                        .build();
+                        userRoleDOMapper.insert(userRoleDO);
+
+                        // 将该用户的角色 ID 存入 Redis 中
+                        List<Long> roles = Lists.newArrayList();
+                        roles.add(RoleConstants.COMMON_USER_ROLE_ID);
+                        String userRolesKey = RedisKeyConstants.buildUserRoleKey(phone);
+                        redisTemplate.opsForValue().set(userRolesKey, JsonUtils.toJsonString(roles));
+                        return userId;
+
+                    } catch (Exception e) {
+                        status.setRollbackOnly(); // 标记事务为回滚
+                        log.error("==> 系统注册用户异常: ", e);
+                        return null;
+                    }
+                });
+    }
+}
+

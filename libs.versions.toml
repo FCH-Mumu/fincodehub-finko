@@ -24,6 +24,8 @@ hutool-version = "5.8.39"
 commons-pool2-version = "2.12.1"
 aliyun-dysmsapi-version = "4.1.2"
 jasypt-version = "3.0.5"
+nacos-config-version = "2023.0.3.3"
+spring-bootstrap-version = "4.3.0"
 
 ## 统一定义依赖
 [libraries]
@@ -55,6 +57,11 @@ hutool-all = { module = "cn.hutool:hutool-all", name="hutool-all", version.ref =
 aliyun-dysmsapi = { module = "com.aliyun:dysmsapi20170525", name="dysmsapi20170525", version.ref = "aliyun-dysmsapi-version" }
 sa-token-redis-jackson = { module = "cn.dev33:sa-token-redis-jackson", name="sa-token-redis-jackson", version.ref = "sa-token-version" }
 jasypt = { module = "com.github.ulisesbocchio:jasypt-spring-boot-starter", name="jasypt-spring-boot-starter", version.ref = "jasypt-version" }
+#nacos-config = { module = "com.alibaba.cloud:spring-alibaba-nacos-config", name="spring-alibaba-nacos-config", version.ref = "nacos-config-version" }
+nacos-cloud-config = { module = "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config", name="spring-cloud-starter-alibaba-nacos-config", version.ref = "nacos-config-version" }
+spring-bootstrap-starter = { module = "org.springframework.cloud:spring-cloud-starter-bootstrap", name="spring-cloud-starter-bootstrap", version.ref = "spring-bootstrap-version" }
+
+
 
 
 

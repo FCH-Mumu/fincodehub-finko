@@ -16,4 +16,20 @@ dependencies {
     implementation(projectLibs.springdoc)
     implementation(projectLibs.swagger.annotations)
     implementation(projectLibs.freemarker)
+
+    //nacos
+//    implementation(projectLibs.nacos.config)
+    implementation(projectLibs.nacos.cloud.config)
+
+
+    // 引入sa-token
+    implementation(projectLibs.sa.token)
+
+    // 引入redis相关
+    implementation(projectLibs.spring.redis)
+    implementation(projectLibs.commons.pool2)
+
+    implementation(projectLibs.aliyun.dysmsapi)
+    // bootstrap
+    implementation(projectLibs.spring.bootstrap.starter)
 }

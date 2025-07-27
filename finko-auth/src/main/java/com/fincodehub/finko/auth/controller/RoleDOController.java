@@ -5,14 +5,14 @@ import org.springframework.stereotype.Controller;
 
 /**
  * <p>
- * 用户表 前端控制器
+ * 角色表 前端控制器
  * </p>
  *
  * @author FCH丨木木
- * @since 2025-07-12
+ * @since 2025-07-27
  */
 @Controller
-@RequestMapping("/userDo")
-public class UserDoController {
+@RequestMapping("/roleDO")
+public class RoleDOController {
 
 }
