@@ -18,7 +18,7 @@ dependencies {
     implementation(projectLibs.freemarker)
 
     //nacos
-//    implementation(projectLibs.nacos.config)
+    // implementation(projectLibs.nacos.config)
     implementation(projectLibs.nacos.cloud.config)
     implementation(projectLibs.nacos.discovery)
 
@@ -29,6 +29,7 @@ dependencies {
     // 引入redis相关
     implementation(projectLibs.spring.redis)
     implementation(projectLibs.commons.pool2)
+    implementation(projectLibs.sa.token.redis.jackson)
 
     implementation(projectLibs.aliyun.dysmsapi)
     // bootstrap

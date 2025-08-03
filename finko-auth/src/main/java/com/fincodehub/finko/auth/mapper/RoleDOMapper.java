@@ -19,4 +19,6 @@ public interface RoleDOMapper extends BaseMapper<RoleDO> {
 
     @Select("SELECT id, role_key, role_name from sys_role where status = 0 and is_deleted = 0")
     List<RoleDO> selectEnabledRoleList();
+
+    RoleDO selectByPrimaryKey(Long commonUserRoleId);
 }

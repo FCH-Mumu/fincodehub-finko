@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: finko-gateway # 应用名称
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        enabled: true # 配置是否启用Nacos服务
+        server-addr: 192.168.43.30:9001 # 配置Nacos服务地址
+        namespace: finko # 命名空间
+        group: DEFAULT_GROUP # 配置分组
+        username: nacos
+        password: nacos

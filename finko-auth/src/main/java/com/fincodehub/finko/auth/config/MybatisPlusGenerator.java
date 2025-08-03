@@ -96,7 +96,7 @@ public class MybatisPlusGenerator {
                         @Override
                         public String entityNameConvert(@NotNull TableInfo tableInfo) {
                           // 自定义表名转Entity
-                          // 针对t_user表返回UserDo
+                          // 针对sys_user表返回UserDo
                           if ("sys_user".equalsIgnoreCase(tableInfo.getName())) {
                             return "UserDO";
                           }

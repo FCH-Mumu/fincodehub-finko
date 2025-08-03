@@ -3,6 +3,7 @@ package com.fincodehub.finko.auth.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fincodehub.finko.auth.domain.UserDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * <p>
@@ -19,6 +20,6 @@ public interface UserDOMapper extends BaseMapper<UserDO> {
      * @param phone
      * @return
      */
-    // @Select("select id, password from sys_user where phone = #{phone}  ")
+    @Select("select id, password from sys_user where phone = #{phone}  ")
     UserDO selectByPhone(String phone);
 }

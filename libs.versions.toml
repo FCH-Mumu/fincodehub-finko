@@ -62,7 +62,9 @@ jasypt = { module = "com.github.ulisesbocchio:jasypt-spring-boot-starter", name=
 nacos-cloud-config = { module = "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config", name="spring-cloud-starter-alibaba-nacos-config", version.ref = "nacos-config-version" }
 nacos-discovery = { module = "com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery", name="spring-cloud-starter-alibaba-nacos-discovery", version.ref = "nacos-discovery-version" }
 spring-bootstrap-starter = { module = "org.springframework.cloud:spring-cloud-starter-bootstrap", name="spring-cloud-starter-bootstrap", version.ref = "spring-bootstrap-version" }
-
+spring-gateway = { module = "org.springframework.cloud:spring-cloud-starter-gateway", name="spring-cloud-starter-gateway" }
+spring-loadbalancer = { module = "org.springframework.cloud:spring-cloud-starter-loadbalancer", name="spring-cloud-starter-loadbalancer" }
+sa-token-starter = { module = "cn.dev33:sa-token-reactor-spring-boot3-starter", name="sa-token-reactor-spring-boot3-starter", version.ref = "sa-token-version" }
 
 
 
