@@ -1,6 +1,8 @@
 dependencies {
     // bootstrap
     implementation(projectLibs.spring.bootstrap.starter)
+    //implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    //    implementation("org.springframework.boot:spring-boot-starter-webflux")
 
     // nacos
     implementation(projectLibs.nacos.discovery)

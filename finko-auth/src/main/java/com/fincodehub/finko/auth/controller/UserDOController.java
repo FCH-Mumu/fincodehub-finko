@@ -5,10 +5,13 @@ import com.fincodehub.finko.auth.service.IUserDOService;
 import com.finko.framework.biz.operationlog.aspect.ApiOperationLog;
 import com.finko.framework.common.response.ResponseObject;
 import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,6 +30,8 @@ public class UserDOController {
 
     @Resource
     private IUserDOService userService;
+    @Autowired
+    private HttpServletRequest httpServletRequest;
 
     @PostMapping("/login")
     @ApiOperationLog(description = "用户登录/注册")
@@ -36,11 +41,14 @@ public class UserDOController {
 
     @PostMapping("/logout")
     @ApiOperationLog(description = "账号登出")
-    public ResponseObject<?> logout() {
+    public ResponseObject<?> logout(@RequestHeader("userId") String userId) {
+        // todo 账号登录逻辑待实现
 
-        // todo 账号退出登录逻辑待实现
+
+        log.info("==> 网关透传过来的用户 ID: {}", userId);
 
         return ResponseObject.success();
     }
+
 
 }

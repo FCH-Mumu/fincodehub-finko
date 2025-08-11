@@ -48,6 +48,7 @@ public class StpInterfaceImpl implements StpInterface {
         // 根据用户 ID ，从 Redis 中获取该用户的角色集合
         String useRolesValue = redisTemplate.opsForValue().get(userRolesKey);
 
+        log.info("==> 获取到的用户角色列表: {}", useRolesValue);
         if (StringUtils.isBlank(useRolesValue)) {
             return null;
         }
@@ -80,6 +81,7 @@ public class StpInterfaceImpl implements StpInterface {
                 });
 
                 // 返回此用户所拥有的权限
+                log.info("==> 获取到的用户权限列表: {}", permissions);
                 return permissions;
             }
         }

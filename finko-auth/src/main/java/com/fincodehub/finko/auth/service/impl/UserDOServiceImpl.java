@@ -127,7 +127,10 @@ public class UserDOServiceImpl extends ServiceImpl<UserDOMapper, UserDO> impleme
 
     // 获取 Token 令牌
     SaTokenInfo tokenInfo = StpUtil.getTokenInfo();
-
+    log.info("==> 登录 tokenInfo: {}", tokenInfo);
+    long loginIdAsLong = StpUtil.getLoginIdAsLong();
+    log.info("==> 登录用户 Long ID: {}", loginIdAsLong);
+ 
     // 返回 Token 令牌
     return ResponseObject.success(tokenInfo.tokenValue);
   }

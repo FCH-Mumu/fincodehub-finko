@@ -45,3 +45,10 @@ sa-token:
   token-style: random-128
   # 是否输出操作日志
   is-log: true
+
+
+
+logging:
+  level:
+    cn.dev33.satoken: DEBUG
+    org.springframework.boot.autoconfigure: DEBUG
