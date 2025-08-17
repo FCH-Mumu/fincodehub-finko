@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: finko-oss
+  config:
+    import:
+      - nacos:finko-oss-dev.yaml?group=DEFAULT_GROUP
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.43.30:9001
+        password: nacos
+        username: nacos
+        namespace: finko # 命名空间
+        group: DEFAULT_GROUP # 配置分组
+        refresh-enabled: true # 配置是否动态刷新
+        prefix: ${spring.application.name} # 配置Data ID前缀
+        file-extension: yaml # 配置文件格式
+      discovery:
+        enabled: true # 配置是否启用Nacos服务
+        server-addr: 192.168.43.30:9001 # 配置Nacos服务地址
+        namespace: finko # 命名空间
+        group: DEFAULT_GROUP # 配置分组
+        username: nacos
+        password: nacos

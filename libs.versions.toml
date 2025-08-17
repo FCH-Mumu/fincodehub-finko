@@ -28,6 +28,11 @@ nacos-config-version = "2023.0.3.3"
 spring-bootstrap-version = "4.3.0"
 nacos-discovery-version = "2023.0.3.3"
 transmittable-thread-local-version = "2.14.5"
+minio-version = "8.5.17"
+aliyun-oss-version = "3.17.4"
+jaxb-api-version = "2.3.1"
+activation-version = "1.1.1"
+jaxb-runtime-version = "2.3.3"
 
 ## 统一定义依赖
 [libraries]
@@ -73,6 +78,11 @@ spring-web= { module = "org.springframework.boot:spring-boot-starter-web", name=
 spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test", name="spring-boot-starter-test" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", name="junit-platform-launcher" }
 spring-security-crypto = { module = "org.springframework.security:spring-security-crypto", name="spring-security-crypto" }
+minio = { module = "io.minio:minio", name="minio", version.ref = "minio-version" }
+aliyun-oss-sdk = { module = "com.aliyun.oss:aliyun-sdk-oss", name="aliyun-sdk-oss", version.ref = "aliyun-oss-version" }
+jaxb-api = { module = "javax.xml.bind:jaxb-api", name="jaxb-api", version.ref = "jaxb-api-version" }
+activation = { module = "javax.activation:activation", name="activation", version.ref = "activation-version" }
+jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", name="jaxb-runtime", version.ref = "jaxb-runtime-version" }
 
 
 

@@ -1,0 +1,18 @@
+#=================================================================
+# 对象存储配置
+#=================================================================
+storage:
+  minio:
+    endpoint: http://192.168.43.30:9000
+    bucketName: finko
+    accessKey: finko
+    secretKey: finko123456
+  aliyun-oss:
+    # OSS 服务的访问域名，请根据实际使用的 OSS 区域替换为对应的 endpoint
+    endpoint: oss-cn-beijing.aliyuncs.com # 改成你自己的
+    bucketName: yjlmall
+    # 阿里云账号的 AccessKey ID，用于身份验证
+    accessKey: ENC(rpcvBGTupQVFpEr+My7LsYcdYdbytHkTnYlvr124Ya/0SU54rTeHZGmL/iKAt3CJklxxAg9JKwzkpce126UdaQ==) # 填写你自己的
+    secretKey: ENC(SZNAXPszoWq9AlPd+fJ8bDbJ6O+D5r24Y1aLLaH6E0Xw4Q8PrnYEBPr82Ui6iQIcuZ5Mc8w4/rMQRQLHF8tVSg==) # 填写你自己的
+
+

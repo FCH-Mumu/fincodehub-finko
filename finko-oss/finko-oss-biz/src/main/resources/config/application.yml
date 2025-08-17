@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  profiles:
+    active: dev
+
+
+storage:
+  type: aliyun # 对象存储类型
+
+jasypt:
+  encryptor:
+    password: ${ENCRYPT_KEY}  # 密钥从环境变量获取
+    algorithm: PBEWithHMACSHA512ANDAES_256  # 推荐使用强加密算法
+    iv-generator-classname: org.jasypt.iv.RandomIvGenerator
