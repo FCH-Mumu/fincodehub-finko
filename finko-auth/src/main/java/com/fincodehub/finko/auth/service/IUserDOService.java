@@ -2,6 +2,7 @@ package com.fincodehub.finko.auth.service;
 
 import com.fincodehub.finko.auth.domain.UserDO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.fincodehub.finko.auth.model.vo.user.UpdatePasswordReqVO;
 import com.fincodehub.finko.auth.model.vo.user.UserLoginReqVO;
 import com.finko.framework.common.response.ResponseObject;
 
@@ -20,4 +21,16 @@ public interface IUserDOService extends IService<UserDO> {
      * @return
      */
     ResponseObject<String> loginAndRegister(UserLoginReqVO userLoginReqVO);
+
+    /**
+     * 登出
+     * @return
+     */
+    ResponseObject<?> logout();
+    /**
+     * 修改密码
+     * @param updatePasswordReqVO
+     * @return
+     */
+    ResponseObject<?> updatePassword(UpdatePasswordReqVO updatePasswordReqVO);
 }

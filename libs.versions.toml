@@ -18,7 +18,7 @@ swagger-annotations-version = "2.2.34"
 freemarker-version = "2.3.32"
 velocity-engine-core-version = "2.4.1"
 fastjson-version = "2.0.57"
-sa-token-version = "1.44.0"
+sa-token-version = "1.38.0"
 guava-version = "33.4.8-jre"
 hutool-version = "5.8.39"
 commons-pool2-version = "2.12.1"
@@ -27,6 +27,7 @@ jasypt-version = "3.0.5"
 nacos-config-version = "2023.0.3.3"
 spring-bootstrap-version = "4.3.0"
 nacos-discovery-version = "2023.0.3.3"
+transmittable-thread-local-version = "2.14.5"
 
 ## 统一定义依赖
 [libraries]
@@ -65,6 +66,13 @@ spring-bootstrap-starter = { module = "org.springframework.cloud:spring-cloud-st
 spring-gateway = { module = "org.springframework.cloud:spring-cloud-starter-gateway", name="spring-cloud-starter-gateway" }
 spring-loadbalancer = { module = "org.springframework.cloud:spring-cloud-starter-loadbalancer", name="spring-cloud-starter-loadbalancer" }
 sa-token-starter = { module = "cn.dev33:sa-token-reactor-spring-boot3-starter", name="sa-token-reactor-spring-boot3-starter", version.ref = "sa-token-version" }
+transmittable-thread-local = { module = "com.alibaba:transmittable-thread-local", name="transmittable-thread-local", version.ref = "transmittable-thread-local-version" }
+spring-boot-starter = { module = "org.springframework.boot:spring-boot-starter", name="spring-boot-starter" }
+jakarta-servlet-api = { module = "jakarta.servlet:jakarta.servlet-api", name="jakarta.servlet-api" }
+spring-web= { module = "org.springframework.boot:spring-boot-starter-web", name="spring-boot-starter-web" }
+spring-boot-test = { module = "org.springframework.boot:spring-boot-starter-test", name="spring-boot-starter-test" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", name="junit-platform-launcher" }
+spring-security-crypto = { module = "org.springframework.security:spring-security-crypto", name="spring-security-crypto" }
 
 
 

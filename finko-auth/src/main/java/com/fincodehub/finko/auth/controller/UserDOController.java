@@ -1,5 +1,6 @@
 package com.fincodehub.finko.auth.controller;
 
+import com.fincodehub.finko.auth.model.vo.user.UpdatePasswordReqVO;
 import com.fincodehub.finko.auth.model.vo.user.UserLoginReqVO;
 import com.fincodehub.finko.auth.service.IUserDOService;
 import com.finko.framework.biz.operationlog.aspect.ApiOperationLog;
@@ -11,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,14 +41,39 @@ public class UserDOController {
 
     @PostMapping("/logout")
     @ApiOperationLog(description = "账号登出")
-    public ResponseObject<?> logout(@RequestHeader("userId") String userId) {
-        // todo 账号登录逻辑待实现
+    public ResponseObject<?> logout() {
 
-
-        log.info("==> 网关透传过来的用户 ID: {}", userId);
-
-        return ResponseObject.success();
+        return userService.logout();
     }
+
+    /**
+     * 修改密码
+     */
+    @PostMapping("/password/update")
+    @ApiOperationLog(description = "修改密码")
+    public ResponseObject<?> updatePassword(@Validated @RequestBody UpdatePasswordReqVO updatePasswordReqVO) {
+        return userService.updatePassword(updatePasswordReqVO);
+    }
+
+    public static void main(String[] args) {
+
+        // 初始化 InheritableThreadLocal
+        ThreadLocal<Long> threadLocal = new InheritableThreadLocal<>();
+
+        // 假设用户 ID 为 1
+        Long userId = 1L;
+
+        // 设置用户 ID 到 InheritableThreadLocal 中
+        threadLocal.set(userId);
+
+        System.out.println("主线程打印用户 ID: " + threadLocal.get());
+
+        // 异步线程
+        new Thread(() -> {
+            System.out.println("异步线程打印用户 ID: " + threadLocal.get());
+        }).start();
+    }
+
 
 
 }

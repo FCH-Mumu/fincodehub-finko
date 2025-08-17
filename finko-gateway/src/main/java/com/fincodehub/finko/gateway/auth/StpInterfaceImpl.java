@@ -44,6 +44,7 @@ public class StpInterfaceImpl implements StpInterface {
 
         // 构建 用户-角色 Redis Key
         String userRolesKey = RedisKeyConstants.buildUserRoleKey(Long.valueOf(loginId.toString()));
+        log.info("==> 获取到的userRolesKey: {}", userRolesKey);
 
         // 根据用户 ID ，从 Redis 中获取该用户的角色集合
         String useRolesValue = redisTemplate.opsForValue().get(userRolesKey);

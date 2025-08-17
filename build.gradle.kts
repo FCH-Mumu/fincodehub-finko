@@ -26,7 +26,7 @@ val envProps = Properties().apply {
 
 plugins {
     java
-    alias(projectLibs.plugins.springboot)
+//    alias(projectLibs.plugins.springboot)
     alias(projectLibs.plugins.springdependency)
 }
 
@@ -59,7 +59,7 @@ subprojects {
     // 所有子模块都是springboot项目
     apply {
         plugin("java")
-        plugin(pLibs.plugins.springboot.get().pluginId)
+//        plugin(pLibs.plugins.springboot.get().pluginId)
         plugin(pLibs.plugins.springdependency.get().pluginId)
 
     }
@@ -73,11 +73,19 @@ subprojects {
         }
     }
 
+    dependencyManagement {
+        imports {
+            mavenBom(pLibs.spring.boot.dependencies.get().toString())
+            mavenBom(pLibs.spring.cloud.dependencies.get().toString())
+            mavenBom(pLibs.spring.cloud.alibaba.dependencies.get().toString())
+
+        }
+    }
 
     dependencies {
-        implementation(platform(pLibs.spring.boot.dependencies))
-        implementation(platform(pLibs.spring.cloud.dependencies))
-        implementation(platform(pLibs.spring.cloud.alibaba.dependencies))
+//        implementation(platform(pLibs.spring.boot.dependencies))
+//        implementation(platform(pLibs.spring.cloud.dependencies))
+//        implementation(platform(pLibs.spring.cloud.alibaba.dependencies))
 
         // 示例：公共工具类可以引入 lombok、utils等
         compileOnly(pLibs.lombok)
