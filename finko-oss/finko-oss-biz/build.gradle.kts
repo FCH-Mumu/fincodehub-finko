@@ -16,4 +16,12 @@ dependencies {
     implementation(projectLibs.jaxb.api)
     implementation(projectLibs.activation)
     implementation(projectLibs.jaxb.runtime)
+
+    // 业务日志接口
+    implementation(project(":finko-framework:finko-spring-boot-starter-biz-operationlog"))
+
+    // JackSon组件
+    implementation(project(":finko-framework:finko-spring-boot-starter-jackson"))
+    // 上下文依赖
+    implementation(project(":finko-framework:finko-spring-boot-starter-biz-context"))
 }

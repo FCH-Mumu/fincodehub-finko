@@ -1,1 +1,2 @@
 com.finko.framework.biz.context.config.ContextAutoConfiguration
+com.finko.framework.biz.context.config.FeignContextAutoConfiguration

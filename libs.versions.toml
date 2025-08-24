@@ -33,6 +33,7 @@ aliyun-oss-version = "3.17.4"
 jaxb-api-version = "2.3.1"
 activation-version = "1.1.1"
 jaxb-runtime-version = "2.3.3"
+feign-form-version = "3.8.0"
 
 ## 统一定义依赖
 [libraries]
@@ -83,9 +84,12 @@ aliyun-oss-sdk = { module = "com.aliyun.oss:aliyun-sdk-oss", name="aliyun-sdk-os
 jaxb-api = { module = "javax.xml.bind:jaxb-api", name="jaxb-api", version.ref = "jaxb-api-version" }
 activation = { module = "javax.activation:activation", name="activation", version.ref = "activation-version" }
 jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", name="jaxb-runtime", version.ref = "jaxb-runtime-version" }
-
-
-
+spring-boot-autoconfigure = { module = "org.springframework.boot:spring-boot-autoconfigure", name="spring-boot-autoconfigure" }
+jackson-datatype-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", name="jackson-datatype-jsr310" }
+spring-openfeign = { module = "org.springframework.cloud:spring-cloud-starter-openfeign", name="spring-cloud-starter-openfeign" }
+feign-form = { module = "io.github.openfeign.form:feign-form", name="feign-form", version.ref = "feign-form-version" }
+feign-form-spring = { module = "io.github.openfeign.form:feign-form-spring", name="feign-form-spring", version.ref = "feign-form-version" }
+feign-core = { module = "io.github.openfeign:feign-core", name="feign-core" }
 
 
 ## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组

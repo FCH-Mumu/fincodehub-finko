@@ -8,12 +8,9 @@ dependencies {
     implementation(project(":finko-framework:finko-spring-boot-starter-biz-operationlog"))
     // 上下文依赖
     implementation(project(":finko-framework:finko-spring-boot-starter-biz-context"))
-    // 引入mybatis依赖
-    implementation(projectLibs.mybatis.plus.boot.starter)
-    implementation(projectLibs.mybatis.plus.generator)
-    implementation(projectLibs.mysql.connector.java)
-    // 引入durid
-    implementation(projectLibs.druid.spring.boot.starter)
+    // jackson
+    implementation(project(":finko-framework:finko-spring-boot-starter-jackson"))
+
 
     implementation(projectLibs.springdoc)
     implementation(projectLibs.swagger.annotations)
@@ -41,5 +38,8 @@ dependencies {
     implementation(projectLibs.transmittable.thread.local)
     // 加密
     implementation(projectLibs.spring.security.crypto)
+
+    // 引入user-api模块
+    implementation(project(":finko-user:finko-user-api"))
 
 }

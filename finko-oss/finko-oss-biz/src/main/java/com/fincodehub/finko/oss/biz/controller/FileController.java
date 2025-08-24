@@ -1,6 +1,7 @@
 package com.fincodehub.finko.oss.biz.controller;
 
 import com.fincodehub.finko.oss.biz.service.FileService;
+import com.finko.framework.biz.context.holder.LoginUserContextHolder;
 import com.finko.framework.common.response.ResponseObject;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,7 @@ public class FileController {
 
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseObject<?> uploadFile(@RequestPart(value = "file") MultipartFile file) {
+        log.info("=============> 上传文件，当前用户ID，{}", LoginUserContextHolder.getUserId());
         return fileService.uploadFile(file);
     }
 

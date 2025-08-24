@@ -6,7 +6,7 @@ spring:
 
 
 storage:
-  type: aliyun # 对象存储类型
+  type: minio # 对象存储类型
 
 jasypt:
   encryptor:

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fincodehub.finko.user.biz.mapper.UserDOMapper">
+    <resultMap id="BaseResultMap" type="com.fincodehub.finko.user.biz.domain.UserDO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="finko_id" jdbcType="VARCHAR" property="finkoId" />
+        <result column="password" jdbcType="VARCHAR" property="password" />
+        <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="birthday" jdbcType="DATE" property="birthday" />
+        <result column="background_img" jdbcType="VARCHAR" property="backgroundImg" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
+        <result column="sex" jdbcType="TINYINT" property="sex" />
+        <result column="status" jdbcType="TINYINT" property="status" />
+        <result column="introduction" jdbcType="VARCHAR" property="introduction" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="is_deleted" jdbcType="BIT" property="isDeleted" />
+    </resultMap>
+
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.fincodehub.finko.user.biz.domain.UserDO">
+        update sys_user
+        <set>
+            <if test="finkoId != null">
+                finko_id = #{finkoId,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="nickname != null">
+                nickname = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="avatar != null">
+                avatar = #{avatar,jdbcType=VARCHAR},
+            </if>
+            <if test="birthday != null">
+                birthday = #{birthday,jdbcType=DATE},
+            </if>
+            <if test="backgroundImg != null">
+                background_img = #{backgroundImg,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null">
+                sex = #{sex,jdbcType=TINYINT},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDeleted != null">
+                is_deleted = #{isDeleted,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+</mapper>

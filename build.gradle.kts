@@ -26,6 +26,7 @@ val envProps = Properties().apply {
 
 plugins {
     java
+    `java-library`
 //    alias(projectLibs.plugins.springboot)
     alias(projectLibs.plugins.springdependency)
 }
@@ -59,6 +60,7 @@ subprojects {
     // 所有子模块都是springboot项目
     apply {
         plugin("java")
+        plugin("java-library")
 //        plugin(pLibs.plugins.springboot.get().pluginId)
         plugin(pLibs.plugins.springdependency.get().pluginId)
 
@@ -100,6 +102,7 @@ subprojects {
         implementation(pLibs.hutool.all)
         implementation(pLibs.commons.pool2)
         implementation(pLibs.jasypt)
+
 
 
     }

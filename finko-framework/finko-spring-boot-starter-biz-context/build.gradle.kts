@@ -9,5 +9,6 @@ dependencies {
     implementation(projectLibs.spring.boot.starter)
     implementation(projectLibs.jakarta.servlet.api)
 
+    implementation(projectLibs.feign.core)
 
 }

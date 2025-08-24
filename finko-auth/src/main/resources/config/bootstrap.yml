@@ -1,6 +1,8 @@
 spring:
   application:
     name: finko-auth
+  profiles:
+    active: dev # 默认激活 dev 本地开发环境
   config:
     import:
       - nacos:finko-auth?group=DEFAULT_GROUP
