@@ -1,0 +1,16 @@
+spring:
+  cassandra:
+    keyspace-name: finko
+    contact-points: 192.168.43.30
+    port: 9042
+#    username: cassandra
+#    password: cassandra
+#    session-name: FCHClusterName
+    local-datacenter: DC1
+    request:
+      timeout: 60s
+
+# 可选：配置日志以查看连接信息
+#logging:
+#  level:
+#    org.springframework.data.cassandra: DEBUG

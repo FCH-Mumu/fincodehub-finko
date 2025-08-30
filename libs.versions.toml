@@ -90,6 +90,7 @@ spring-openfeign = { module = "org.springframework.cloud:spring-cloud-starter-op
 feign-form = { module = "io.github.openfeign.form:feign-form", name="feign-form", version.ref = "feign-form-version" }
 feign-form-spring = { module = "io.github.openfeign.form:feign-form-spring", name="feign-form-spring", version.ref = "feign-form-version" }
 feign-core = { module = "io.github.openfeign:feign-core", name="feign-core" }
+spring-cassandra = { module = "org.springframework.boot:spring-boot-starter-data-cassandra", name="spring-boot-starter-data-cassandra" }
 
 
 ## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组
