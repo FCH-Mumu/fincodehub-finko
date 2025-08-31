@@ -41,4 +41,6 @@ dependencies {
     implementation(projectLibs.spring.redis)
     implementation(projectLibs.commons.pool2)
 
+    implementation(project(":finko-distributed-id-generator:finko-distributed-id-generator-api"))
+
 }

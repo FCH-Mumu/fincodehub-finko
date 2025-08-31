@@ -34,6 +34,9 @@ jaxb-api-version = "2.3.1"
 activation-version = "1.1.1"
 jaxb-runtime-version = "2.3.3"
 feign-form-version = "3.8.0"
+perf4j-version = "0.9.16"
+curator-recipes-version = "2.6.0"
+zookeeper-version = "3.9.4"
 
 ## 统一定义依赖
 [libraries]
@@ -91,6 +94,11 @@ feign-form = { module = "io.github.openfeign.form:feign-form", name="feign-form"
 feign-form-spring = { module = "io.github.openfeign.form:feign-form-spring", name="feign-form-spring", version.ref = "feign-form-version" }
 feign-core = { module = "io.github.openfeign:feign-core", name="feign-core" }
 spring-cassandra = { module = "org.springframework.boot:spring-boot-starter-data-cassandra", name="spring-boot-starter-data-cassandra" }
+perf4j = { module = "org.perf4j:perf4j", name = "perf4j", version.ref = "perf4j-version" }
+curator-recipes = { module = "org.apache.curator:curator-recipes", name = "curator-recipes", version.ref = "curator-recipes-version" }
+druid = { module = "com.alibaba:druid", name = "druid", version.ref = "druid-version" }
+zookeeper = { module = "org.apache.zookeeper:zookeeper", name = "zookeeper", version.ref = "zookeeper-version" }
+
 
 
 ## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组

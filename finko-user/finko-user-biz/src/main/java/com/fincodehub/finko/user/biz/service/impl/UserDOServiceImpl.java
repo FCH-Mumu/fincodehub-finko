@@ -12,6 +12,7 @@ import com.fincodehub.finko.user.biz.mapper.RoleDOMapper;
 import com.fincodehub.finko.user.biz.mapper.UserDOMapper;
 import com.fincodehub.finko.user.biz.mapper.UserRoleDOMapper;
 import com.fincodehub.finko.user.biz.model.vo.UpdateUserInfoReqVO;
+import com.fincodehub.finko.user.biz.rpc.DistributedIdGeneratorRpcService;
 import com.fincodehub.finko.user.biz.rpc.OssRpcService;
 import com.fincodehub.finko.user.biz.service.IUserDOService;
 import com.fincodehub.finko.user.dto.req.FindUserByPhoneReqDTO;
@@ -61,7 +62,8 @@ public class UserDOServiceImpl extends ServiceImpl<UserDOMapper, UserDO> impleme
     @Resource
     private RedisTemplate<String, Object> redisTemplate;
 
-
+    @Resource
+    private DistributedIdGeneratorRpcService distributedIdGeneratorRpcService;
 
     /**
      * 用户注册
@@ -85,12 +87,19 @@ public class UserDOServiceImpl extends ServiceImpl<UserDOMapper, UserDO> impleme
         }
 
         // 否则注册新用户
-        // 获取全局自增的小哈书 ID
-        Long finkoId = redisTemplate.opsForValue().increment(RedisKeyConstants.FINKO_ID_GENERATOR_KEY);
+        // 获取全局自增finko ID
+        // Long finkoId = redisTemplate.opsForValue().increment(RedisKeyConstants.FINKO_ID_GENERATOR_KEY);
+
+        String finkoId = distributedIdGeneratorRpcService.getFinkoId();
+
+        // RPC
+        String userIdStr = distributedIdGeneratorRpcService.getUserId();
+        Long userId = Long.parseLong(userIdStr);
 
         UserDO userDO = UserDO.builder()
+                .id(userId)
                 .phone(phone)
-                .finkoId(String.valueOf(finkoId)) // 自动生成小红书号 ID
+                .finkoId(finkoId) // 自动生成小红书号 ID
                 .nickname("小红薯" + finkoId) // 自动生成昵称, 如：小红薯10000
                 .status(StatusEnum.ENABLE.getValue()) // 状态为启用
                 .createTime(LocalDateTime.now())
@@ -102,7 +111,7 @@ public class UserDOServiceImpl extends ServiceImpl<UserDOMapper, UserDO> impleme
         userDOMapper.insert(userDO);
 
         // 获取刚刚添加入库的用户 ID
-        Long userId = userDO.getId();
+        // Long userId = userDO.getId();
 
         // 给该用户分配一个默认角色
         UserRoleDO userRoleDO = UserRoleDO.builder()
