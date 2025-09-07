@@ -37,6 +37,7 @@ feign-form-version = "3.8.0"
 perf4j-version = "0.9.16"
 curator-recipes-version = "2.6.0"
 zookeeper-version = "3.9.4"
+caffeine-version = "3.1.8"
 
 ## 统一定义依赖
 [libraries]
@@ -98,7 +99,7 @@ perf4j = { module = "org.perf4j:perf4j", name = "perf4j", version.ref = "perf4j-
 curator-recipes = { module = "org.apache.curator:curator-recipes", name = "curator-recipes", version.ref = "curator-recipes-version" }
 druid = { module = "com.alibaba:druid", name = "druid", version.ref = "druid-version" }
 zookeeper = { module = "org.apache.zookeeper:zookeeper", name = "zookeeper", version.ref = "zookeeper-version" }
-
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", name = "caffeine", version.ref = "caffeine-version"}
 
 
 ## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组

@@ -1,9 +1,11 @@
 package com.fincodehub.finko.user.api;
 
 import com.fincodehub.finko.user.constant.ApiConstants;
+import com.fincodehub.finko.user.dto.req.FindUserByIdReqDTO;
 import com.fincodehub.finko.user.dto.req.FindUserByPhoneReqDTO;
 import com.fincodehub.finko.user.dto.req.RegisterUserReqDTO;
 import com.fincodehub.finko.user.dto.req.UpdateUserPasswordReqDTO;
+import com.fincodehub.finko.user.dto.resp.FindUserByIdRspDTO;
 import com.fincodehub.finko.user.dto.resp.FindUserByPhoneRspDTO;
 import com.finko.framework.common.response.ResponseObject;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -30,4 +32,13 @@ public interface UserFeignApi {
 
     @PostMapping(value = PREFIX + "/password/update")
     ResponseObject<?> updatePassword(@RequestBody UpdateUserPasswordReqDTO updateUserPasswordReqDTO);
+
+    /**
+     * 根据用户 ID 查询用户信息
+     *
+     * @param findUserByIdReqDTO
+     * @return
+     */
+    @PostMapping(value = PREFIX + "/findById")
+    ResponseObject<FindUserByIdRspDTO> findById(@RequestBody FindUserByIdReqDTO findUserByIdReqDTO);
 }

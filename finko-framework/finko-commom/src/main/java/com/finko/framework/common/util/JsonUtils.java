@@ -5,13 +5,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.SneakyThrows;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @title JsonUtils
  * @author FCH丨木木
  * @version 1.0.0
  * @create 2025/7/8 21:06
- * @description <TODO description class purpose>
+ * @description JSON 工具类
  */
 public class JsonUtils {
 
@@ -59,4 +60,20 @@ public class JsonUtils {
         return OBJECT_MAPPER.writeValueAsString(obj);
     }
 
+    /**
+     * 将 JSON 字符串转换为对象
+     *
+     * @param jsonStr
+     * @param clazz
+     * @return
+     * @param <T>
+     */
+    @SneakyThrows
+    public static <T> T parseObject(String jsonStr, Class<T> clazz) {
+        if (StringUtils.isBlank(jsonStr)) {
+            return null;
+        }
+
+        return OBJECT_MAPPER.readValue(jsonStr, clazz);
+    }
 }

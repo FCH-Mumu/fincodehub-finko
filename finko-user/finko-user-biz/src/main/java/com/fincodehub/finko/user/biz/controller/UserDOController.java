@@ -2,9 +2,11 @@ package com.fincodehub.finko.user.biz.controller;
 
 import com.fincodehub.finko.user.biz.model.vo.UpdateUserInfoReqVO;
 import com.fincodehub.finko.user.biz.service.IUserDOService;
+import com.fincodehub.finko.user.dto.req.FindUserByIdReqDTO;
 import com.fincodehub.finko.user.dto.req.FindUserByPhoneReqDTO;
 import com.fincodehub.finko.user.dto.req.RegisterUserReqDTO;
 import com.fincodehub.finko.user.dto.req.UpdateUserPasswordReqDTO;
+import com.fincodehub.finko.user.dto.resp.FindUserByIdRspDTO;
 import com.fincodehub.finko.user.dto.resp.FindUserByPhoneRspDTO;
 import com.finko.framework.biz.operationlog.aspect.ApiOperationLog;
 import com.finko.framework.common.response.ResponseObject;
@@ -61,5 +63,10 @@ public class UserDOController {
     @ApiOperationLog(description = "密码更新")
     public ResponseObject<?> updatePassword(@Validated @RequestBody UpdateUserPasswordReqDTO updateUserPasswordReqDTO) {
         return userService.updatePassword(updateUserPasswordReqDTO);
+    }
+    @PostMapping("/findById")
+    @ApiOperationLog(description = "查询用户信息")
+    public ResponseObject<FindUserByIdRspDTO> findById(@Validated @RequestBody FindUserByIdReqDTO findUserByIdReqDTO) {
+        return userService.findById(findUserByIdReqDTO);
     }
 }

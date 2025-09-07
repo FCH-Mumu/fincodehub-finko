@@ -24,4 +24,7 @@ public interface UserDOMapper extends BaseMapper<UserDO> {
      */
     @Select("select id, password from sys_user where phone = #{phone}  ")
     UserDO selectByPhone(String phone);
+
+    @Select("select * from sys_user where id=#{userId}")
+    UserDO selectByPrimaryKey(Long userId);
 }

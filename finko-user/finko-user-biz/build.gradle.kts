@@ -43,4 +43,7 @@ dependencies {
 
     implementation(project(":finko-distributed-id-generator:finko-distributed-id-generator-api"))
 
+    // 引入caffeine
+    implementation(projectLibs.caffeine)
+
 }

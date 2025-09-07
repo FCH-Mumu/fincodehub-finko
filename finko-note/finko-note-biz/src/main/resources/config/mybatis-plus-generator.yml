@@ -1,0 +1,25 @@
+# 代码生成
+generator:
+  # 作者
+  author: FCH丨木木
+  # 模板路径，需要放在resources路径下，会分别从generator/js，generator/plus，generator/vue中读取js、java和vue模板
+  generatorPath: generator
+  # 文件存在是否覆盖
+  fileOverride: false
+  # java代码保存路径
+  javaPath: /finko-note-biz/src/main/java
+  # 默认生成包路径，优先使用此配置。如果此配置为空，读取gen_table中的数据（package_name），不拼接业务名
+  # 若依自带的生成器保存位置就是packageName，因为若依每次生成代码，前端页面可以手动修改保存
+  # 但是为了方便，会自动拼接业务名（business_name）。若是想和若依框架统一，可以修改下Generator
+  packageName: com.fincodehub.finko.note.biz
+  # 自动去除表前缀，默认是false
+  autoRemovePre: false
+  # 表前缀，当去除表前缀为true时生效
+  tablePrefix: finko_
+
+  # 前端代码保存路径
+  uiPath: finko-ui/src
+  # js代码保存路径（相对于uiPath的路径），会自动拼接（uiPath + "/" + jsPath）
+  jsPath: finko/api
+  # 页面代码路径（相对于uiPath的路径），会自动拼接（uiPath + "/" + viewPath）
+  viewPath: views/py
