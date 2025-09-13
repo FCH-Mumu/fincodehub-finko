@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fincodehub.finko.note.biz.domain.dataobject.Note;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * <p>
@@ -20,6 +21,14 @@ public interface NoteMapper extends BaseMapper<Note> {
     @Select("select * from sys_note where id = #{id} and status = 1")
     Note selectByPrimaryKey(Long noteId);
 
-    // @Update("update sys_note set title = #{title},is_content_empty = #{isContentEmpty},topic_id = #{topicId},topic_name = #{topicName},`type` = #{type},img_uris = #{imgUris},video_uri = #{videoUri},update_time = #{updateTime} where id = #{id}")
-    // void updateByPrimaryKey(Note note);
+  // @Update("update sys_note set title = #{title},is_content_empty = #{isContentEmpty},topic_id =
+  // #{topicId},topic_name = #{topicName},`type` = #{type},img_uris = #{imgUris},video_uri =
+  // #{videoUri},update_time = #{updateTime} where id = #{id}")
+  // void updateByPrimaryKey(Note note);
+
+  @Update("update sys_note set visible = #{visible},update_time = #{updateTime} where id = #{id} and status = 1")
+  int updateVisibleOnlyMe(Note noteDO);
+
+  @Update("update sys_note  set is_top = #{isTop}, update_time = #{updateTime} where id = #{id} and creator_id = #{creatorId}")
+  int updateIsTop(Note noteDO);
 }

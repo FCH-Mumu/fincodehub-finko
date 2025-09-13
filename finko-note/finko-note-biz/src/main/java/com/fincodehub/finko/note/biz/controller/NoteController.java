@@ -1,9 +1,12 @@
 package com.fincodehub.finko.note.biz.controller;
 
+import com.fincodehub.finko.note.biz.model.vo.DeleteNoteReqVO;
 import com.fincodehub.finko.note.biz.model.vo.FindNoteDetailReqVO;
 import com.fincodehub.finko.note.biz.model.vo.FindNoteDetailRspVO;
 import com.fincodehub.finko.note.biz.model.vo.PublishNoteReqVO;
+import com.fincodehub.finko.note.biz.model.vo.TopNoteReqVO;
 import com.fincodehub.finko.note.biz.model.vo.UpdateNoteReqVO;
+import com.fincodehub.finko.note.biz.model.vo.UpdateNoteVisibleOnlyMeReqVO;
 import com.fincodehub.finko.note.biz.service.INoteService;
 import com.finko.framework.biz.operationlog.aspect.ApiOperationLog;
 import com.finko.framework.common.response.ResponseObject;
@@ -48,4 +51,21 @@ public class NoteController {
         return noteService.updateNote(updateNoteReqVO);
     }
 
+    @PostMapping(value = "/delete")
+    @ApiOperationLog(description = "删除笔记")
+    public ResponseObject<?> deleteNote(@Validated @RequestBody DeleteNoteReqVO deleteNoteReqVO) {
+        return noteService.deleteNote(deleteNoteReqVO);
+    }
+
+    @PostMapping(value = "/visible/onlyme")
+    @ApiOperationLog(description = "笔记仅对自己可见")
+    public ResponseObject<?> visibleOnlyMe(@Validated @RequestBody UpdateNoteVisibleOnlyMeReqVO updateNoteVisibleOnlyMeReqVO) {
+        return noteService.visibleOnlyMe(updateNoteVisibleOnlyMeReqVO);
+    }
+
+    @PostMapping(value = "/top")
+    @ApiOperationLog(description = "置顶/取消置顶笔记")
+    public ResponseObject<?> topNote(@Validated @RequestBody TopNoteReqVO topNoteReqVO) {
+        return noteService.topNote(topNoteReqVO);
+    }
 }

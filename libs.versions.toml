@@ -38,6 +38,7 @@ perf4j-version = "0.9.16"
 curator-recipes-version = "2.6.0"
 zookeeper-version = "3.9.4"
 caffeine-version = "3.1.8"
+rocketmq-version = "2.3.4"
 
 ## 统一定义依赖
 [libraries]
@@ -100,6 +101,7 @@ curator-recipes = { module = "org.apache.curator:curator-recipes", name = "curat
 druid = { module = "com.alibaba:druid", name = "druid", version.ref = "druid-version" }
 zookeeper = { module = "org.apache.zookeeper:zookeeper", name = "zookeeper", version.ref = "zookeeper-version" }
 caffeine = { module = "com.github.ben-manes.caffeine:caffeine", name = "caffeine", version.ref = "caffeine-version"}
+rocketmq = { module = "org.apache.rocketmq:rocketmq-spring-boot-starter", name = "rocketmq-spring-boot-starter", version.ref = "rocketmq-version" }
 
 
 ## 将多个需要同时引入的依赖定义成一个组，使用时直接引入组

@@ -42,6 +42,9 @@ dependencies {
 
     implementation(project(":finko-user:finko-user-api"))
     implementation(projectLibs.caffeine)
+
+    implementation(projectLibs.rocketmq)
+
 }
 
 

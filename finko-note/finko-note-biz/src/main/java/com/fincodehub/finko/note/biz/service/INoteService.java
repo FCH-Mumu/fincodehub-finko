@@ -2,10 +2,13 @@ package com.fincodehub.finko.note.biz.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.fincodehub.finko.note.biz.domain.dataobject.Note;
+import com.fincodehub.finko.note.biz.model.vo.DeleteNoteReqVO;
 import com.fincodehub.finko.note.biz.model.vo.FindNoteDetailReqVO;
 import com.fincodehub.finko.note.biz.model.vo.FindNoteDetailRspVO;
 import com.fincodehub.finko.note.biz.model.vo.PublishNoteReqVO;
+import com.fincodehub.finko.note.biz.model.vo.TopNoteReqVO;
 import com.fincodehub.finko.note.biz.model.vo.UpdateNoteReqVO;
+import com.fincodehub.finko.note.biz.model.vo.UpdateNoteVisibleOnlyMeReqVO;
 import com.finko.framework.common.response.ResponseObject;
 
 /**
@@ -37,4 +40,30 @@ public interface INoteService extends IService<Note> {
      * @return
      */
     ResponseObject<?> updateNote(UpdateNoteReqVO updateNoteReqVO);
+
+    /**
+     * 删除本地笔记缓存
+     * @param noteId
+     */
+    void deleteNoteLocalCache(Long noteId);
+
+    /**
+     * 删除笔记
+     * @param deleteNoteReqVO
+     * @return
+     */
+    ResponseObject<?> deleteNote(DeleteNoteReqVO deleteNoteReqVO);
+
+    /**
+     * 笔记仅对自己可见
+     * @param updateNoteVisibleOnlyMeReqVO
+     * @return
+     */
+    ResponseObject<?> visibleOnlyMe(UpdateNoteVisibleOnlyMeReqVO updateNoteVisibleOnlyMeReqVO);
+    /**
+     * 笔记置顶 / 取消置顶
+     * @param topNoteReqVO
+     * @return
+     */
+    ResponseObject<?> topNote(TopNoteReqVO topNoteReqVO);
 }
