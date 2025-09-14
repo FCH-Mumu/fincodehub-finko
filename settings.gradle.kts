@@ -47,3 +47,7 @@ include("finko-distributed-id-generator:finko-distributed-id-generator-biz")
 include("finko-note")
 include("finko-note:finko-note-api")
 include("finko-note:finko-note-biz")
+
+include("finko-user-relation")
+include("finko-user-relation:finko-user-relation-api")
+include("finko-user-relation:finko-user-relation-biz")

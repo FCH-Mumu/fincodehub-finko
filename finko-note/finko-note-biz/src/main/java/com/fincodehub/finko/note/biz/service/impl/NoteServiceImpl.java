@@ -391,6 +391,20 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
         break;
     }
 
+    // 当前登录用户 ID
+    Long currUserId = LoginUserContextHolder.getUserId();
+    Note selectNoteDO = noteMapper.selectByPrimaryKey(noteId);
+
+    // 笔记不存在
+    if (Objects.isNull(selectNoteDO)) {
+      throw new BizException(ResponseCodeEnum.NOTE_NOT_FOUND);
+    }
+
+    // 判断权限：非笔记发布者不允许更新笔记
+    if (!Objects.equals(currUserId, selectNoteDO.getCreatorId())) {
+      throw new BizException(ResponseCodeEnum.NOTE_CANT_OPERATE);
+    }
+
     // 话题
     Long topicId = updateNoteReqVO.getTopicId();
     String topicName = null;
@@ -503,6 +517,18 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
     // 笔记 ID
     Long noteId = deleteNoteReqVO.getId();
 
+    Note selectNoteDO = noteMapper.selectByPrimaryKey(noteId);
+
+    // 判断笔记是否存在
+    if (Objects.isNull(selectNoteDO)) {
+      throw new BizException(ResponseCodeEnum.NOTE_NOT_FOUND);
+    }
+
+    // 判断权限：非笔记发布者不允许删除笔记
+    Long currUserId = LoginUserContextHolder.getUserId();
+    if (!Objects.equals(currUserId, selectNoteDO.getCreatorId())) {
+      throw new BizException(ResponseCodeEnum.NOTE_CANT_OPERATE);
+    }
     // 逻辑删除
     Note noteDO = Note.builder()
             .id(noteId)
@@ -538,6 +564,19 @@ public class NoteServiceImpl extends ServiceImpl<NoteMapper, Note> implements IN
   public ResponseObject<?> visibleOnlyMe(UpdateNoteVisibleOnlyMeReqVO updateNoteVisibleOnlyMeReqVO) {
     // 笔记 ID
     Long noteId = updateNoteVisibleOnlyMeReqVO.getId();
+
+    Note selectNoteDO = noteMapper.selectByPrimaryKey(noteId);
+
+    // 判断笔记是否存在
+    if (Objects.isNull(selectNoteDO)) {
+      throw new BizException(ResponseCodeEnum.NOTE_NOT_FOUND);
+    }
+
+    // 判断权限：非笔记发布者不允许修改笔记权限
+    Long currUserId = LoginUserContextHolder.getUserId();
+    if (!Objects.equals(currUserId, selectNoteDO.getCreatorId())) {
+      throw new BizException(ResponseCodeEnum.NOTE_CANT_OPERATE);
+    }
 
     // 构建更新 DO 实体类
     Note noteDO = Note.builder()

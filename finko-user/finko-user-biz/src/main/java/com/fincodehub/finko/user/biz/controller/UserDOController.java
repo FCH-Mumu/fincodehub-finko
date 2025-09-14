@@ -4,6 +4,7 @@ import com.fincodehub.finko.user.biz.model.vo.UpdateUserInfoReqVO;
 import com.fincodehub.finko.user.biz.service.IUserDOService;
 import com.fincodehub.finko.user.dto.req.FindUserByIdReqDTO;
 import com.fincodehub.finko.user.dto.req.FindUserByPhoneReqDTO;
+import com.fincodehub.finko.user.dto.req.FindUsersByIdsReqDTO;
 import com.fincodehub.finko.user.dto.req.RegisterUserReqDTO;
 import com.fincodehub.finko.user.dto.req.UpdateUserPasswordReqDTO;
 import com.fincodehub.finko.user.dto.resp.FindUserByIdRspDTO;
@@ -11,6 +12,7 @@ import com.fincodehub.finko.user.dto.resp.FindUserByPhoneRspDTO;
 import com.finko.framework.biz.operationlog.aspect.ApiOperationLog;
 import com.finko.framework.common.response.ResponseObject;
 import jakarta.annotation.Resource;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -68,5 +70,10 @@ public class UserDOController {
     @ApiOperationLog(description = "查询用户信息")
     public ResponseObject<FindUserByIdRspDTO> findById(@Validated @RequestBody FindUserByIdReqDTO findUserByIdReqDTO) {
         return userService.findById(findUserByIdReqDTO);
+    }
+    @PostMapping("/findByIds")
+    @ApiOperationLog(description = "批量查询用户信息")
+    public ResponseObject<List<FindUserByIdRspDTO>> findByIds(@Validated @RequestBody FindUsersByIdsReqDTO findUsersByIdsReqDTO) {
+        return userService.findByIds(findUsersByIdsReqDTO);
     }
 }

@@ -3,7 +3,10 @@ package com.fincodehub.finko.user.biz.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.fincodehub.finko.user.biz.domain.UserDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * <p>
@@ -27,4 +30,14 @@ public interface UserDOMapper extends BaseMapper<UserDO> {
 
     @Select("select * from sys_user where id=#{userId}")
     UserDO selectByPrimaryKey(Long userId);
+
+    /**
+     * 批量查询用户信息
+     *
+     * @param ids
+     * @return
+     */
+
+    List<UserDO> selectByIds(@Param("ids") List<Long> ids);
+
 }
